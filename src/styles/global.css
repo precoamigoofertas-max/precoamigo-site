@@ -17,6 +17,9 @@
 		0 16px 32px rgba(var(--gray), 33%);
 }
 body {
+	body {
+    font-family: 'Inter', sans-serif;
+}
 	font-family: var(--font-atkinson);
 	margin: 0;
 	padding: 0;
