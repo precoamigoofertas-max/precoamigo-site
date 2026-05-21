@@ -1,0 +1,30 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+---
+<!doctype html>
+<html>
+    <head><BaseHead title="Ofertas do Dia | Preco Amigo" description="Melhores ofertas" /></head>
+    <body>
+        <Header />
+        <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem;">
+            <h1>Ofertas do Dia</h1>
+            <div class="grid">
+               <ProductCard 
+    title="Kit 3 Calças Jeans Masculina com Lycra"
+    image="/kitcalcas.jpg" 
+    price="R$ 140,00"
+    link="https://meli.la/2kN3WsM"
+    description="Jeans com elastano (Lycra) para o máximo conforto e ajuste perfeito. Aproveite a promoção de atacado!"
+/>
+            </div>
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style>
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+</style>

@@ -1,0 +1,28 @@
+---
+export interface Props {
+    title: string;
+    image: string;
+    price: string;
+    link: string;
+    description: string;
+}
+const { title, image, price, link, description } = Astro.props;
+---
+
+<div class="product-card">
+    <img src={image} alt={title} />
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div class="price">{price}</div>
+    <a href={link} target="_blank" rel="nofollow sponsored" class="buy-button">Ver no Mercado Livre</a>
+</div>
+
+<style>
+    .product-card { border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; text-align: center; background: #fff; transition: 0.3s; }
+    .product-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    img { max-width: 100%; height: auto; border-radius: 4px; }
+    h3 { font-size: 1.2rem; margin: 1rem 0; color: #333; }
+    .price { font-size: 1.5rem; font-weight: bold; color: #FF9900; margin-bottom: 1rem; }
+    .buy-button { background: #131921; color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; }
+    .buy-button:hover { background: #FF9900; color: #111; }
+</style>

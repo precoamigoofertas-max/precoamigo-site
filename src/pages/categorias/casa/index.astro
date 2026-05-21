@@ -1,0 +1,28 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { SITE_TITLE } from '../../../consts';
+---
+
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<BaseHead title={`Ofertas do Dia | ${SITE_TITLE}`} description="Confira as melhores ofertas do dia" />
+	</head>
+	<body>
+		<Header />
+		<main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem;">
+			<h1>Ofertas do Dia</h1>
+			<div class="grid">
+                <p>Em breve, promoções exclusivas aqui!</p>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+</style>

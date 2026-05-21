@@ -50,3 +50,34 @@
     const links = document.querySelector('.nav-links');
     hamburger?.addEventListener('click', () => links?.classList.toggle('open'));
 </script>
+
+<header>
+    <nav class="nav-container">
+        </nav>
+    
+    <div class="affiliate-disclosure">
+        <p>
+            O Preco Amigo participa do Programa de Associados da Amazon e outros afiliados. Ao clicar em nossos links, podemos ganhar uma comissão, sem custo adicional para você.
+        </p>
+    </div>
+</header>
+
+<style>
+    /* ... (seus estilos existentes) ... */
+
+  .affiliate-disclosure {
+        background: #131921; /* Mantém a mesma cor de fundo do cabeçalho */
+        color: #FF9900; /* Letras no tom laranja da marca */
+        font-size: 0.7rem; 
+        text-align: center;
+        padding: 8px 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha divisória quase invisível só para dar estrutura */
+    }
+    
+    .affiliate-disclosure p {
+        margin: 0;
+        font-style: italic;
+        letter-spacing: 0.3px; /* Dá um pouco mais de espaço entre as letras para facilitar a leitura */
+        opacity: 0.8; /* Suaviza o laranja para ficar mais sofisticado e menos agressivo à vista */
+    }
+</style>
