@@ -1,14 +1,23 @@
----
----
 <footer>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <div class="footer-container">
         <nav class="footer-section">
+            <h4>Categorias</h4>
+            <div class="links-vertical">
+                <a href="/categorias/tecnologia">Tecnologia</a>
+                <a href="/categorias/casa">Casa Inteligente</a>
+                <a href="/categorias/achadinhos">Achadinhos</a>
+                <a href="/categorias/automotivo">Automotivo</a>
+            </div>
+        </nav>
+
+        <nav class="footer-section">
             <h4>Institucional</h4>
             <div class="links-vertical">
-                <a href="/politica-privacidade">Política de Privacidade</a>
-                <a href="/termos-uso">Termos de Uso</a>
+                <a href="/sobre">Sobre Nós</a>
+                <a href="/privacidade">Política de Privacidade</a>
+                <a href="/termos">Termos de Uso</a>
                 <a href="/contato">Contato</a>
             </div>
         </nav>
@@ -16,17 +25,17 @@
         <section class="footer-section">
             <h4>Siga-nos</h4>
             <div class="social-links">
-                <a href="URL_TIKTOK"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-                <a href="URL_YOUTUBE"><i class="fa-brands fa-youtube"></i> YouTube</a>
-                <a href="URL_INSTA"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="URL_FB"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="https://www.tiktok.com/@precoamigo.ofertas" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="https://www.youtube.com/@PrecoAmigo" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                <a href="https://www.instagram.com/precoamigo.ofertas/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/share/1CgPMWNgAN" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i> Facebook</a>
             </div>
         </section>
     </div>
 
     <div class="footer-bottom">
         <p class="disclosure">
-            O Preco Amigo é mantido por leitores. Podemos receber comissões por compras realizadas através de nossos links, sem nenhum custo extra para você.
+            O Preco Amigo é um portal de curadoria de ofertas e conteúdo. Podemos receber comissões por compras realizadas através de nossos links, o que não altera o preço final do produto para você. Agradecemos por apoiar nosso trabalho de pesquisa e testes.
         </p>
         <p class="copyright">&copy; {new Date().getFullYear()} Preco Amigo. Todos os direitos reservados.</p>
     </div>
@@ -38,25 +47,26 @@
     .footer-container { 
         display: flex; 
         justify-content: center; 
-        gap: 8rem; /* Aumentado para separar bem as colunas */
+        gap: 5rem; 
         margin-bottom: 2rem;
         flex-wrap: wrap; 
     }
 
-    h4 { color: #FF9900; font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    h4 { color: #FF9900; font-size: 0.95rem; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; }
     
     .links-vertical a, .social-links a { 
         display: block; color: #ccc; text-decoration: none; font-size: 0.9rem; margin-bottom: 12px;
+        transition: color 0.2s;
     }
-    .links-vertical a:hover, .social-links a:hover { color: #fff; }
+    .links-vertical a:hover, .social-links a:hover { color: #FF9900; }
     
-    .social-links a i { width: 20px; margin-right: 8px; } /* Alinhamento dos ícones */
+    .social-links a i { width: 20px; margin-right: 8px; }
 
     .footer-bottom { text-align: center; border-top: 1px solid #232f3e; padding-top: 1.5rem; }
-    .disclosure { font-size: 0.75rem; color: #888; max-width: 600px; margin: 0 auto 1rem auto; line-height: 1.5; }
+    .disclosure { font-size: 0.75rem; color: #888; max-width: 700px; margin: 0 auto 1rem auto; line-height: 1.5; }
     .copyright { font-size: 0.75rem; color: #666; }
 
     @media (max-width: 600px) {
-        .footer-container { gap: 3rem; text-align: center; }
+        .footer-container { gap: 2.5rem; text-align: center; }
     }
 </style>

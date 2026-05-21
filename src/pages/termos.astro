@@ -1,0 +1,131 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <BaseHead 
+            title="Termos de Uso | Preco Amigo" 
+            description="Termos e condições de uso do site Preco Amigo. Entenda as regras de utilização dos nossos conteúdos e recomendações." 
+        />
+    </head>
+    <body>
+        <Header />
+
+        <main class="legal-container">
+            <div class="legal-content">
+                <h1>Termos de Uso</h1>
+                <p class="last-updated">Última atualização: Maio de 2026</p>
+
+                <section>
+                    <h2>1. Aceitação dos Termos</h2>
+                    <p>Ao acessar ao site <strong>Preco Amigo</strong>, você concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis e concorda que é responsável pelo cumprimento de todas as leis locais aplicáveis. Se você não concordar com algum desses termos, está proibido de usar ou acessar este site.</p>
+                </section>
+
+                <section>
+                    <h2>2. Natureza do Serviço e Links de Afiliados</h2>
+                    <p>O Preco Amigo é um portal de conteúdo focado em análises, dicas e recomendações de produtos. Nós não vendemos, faturamos, cobramos ou enviamos nenhum produto físico diretamente.</p>
+                    <p>Nosso conteúdo contém links de afiliados. Isso significa que, ao clicar em um link e realizar uma compra em sites parceiros (como Amazon, Mercado Livre, entre outros), podemos receber uma comissão. <strong>Isso não altera o preço final do produto para você.</strong></p>
+                </section>
+
+                <section>
+                    <h2>3. Isenção de Responsabilidade Comercial</h2>
+                    <p>Como atuamos apenas como indicadores de ofertas, o Preco Amigo <strong>não se responsabiliza</strong> por:</p>
+                    <ul>
+                        <li>Disponibilidade de estoque nas lojas parceiras;</li>
+                        <li>Alterações de preços (as ofertas podem expirar a qualquer momento a critério da loja vendedora);</li>
+                        <li>Prazos de entrega, frete, devoluções ou garantias dos produtos;</li>
+                        <li>Problemas no processamento de pagamentos.</li>
+                    </ul>
+                    <p>Qualquer problema relacionado à compra, entrega ou defeito do produto deve ser tratado diretamente com o serviço de atendimento ao cliente da loja onde a compra foi finalizada.</p>
+                </section>
+
+                <section>
+                    <h2>4. Precisão dos Materiais</h2>
+                    <p>Os materiais exibidos no site do Preco Amigo podem incluir erros técnicos, tipográficos ou fotográficos. O Preco Amigo não garante que qualquer material em seu site seja preciso, completo ou atual. Podemos fazer alterações nos materiais contidos em nosso site a qualquer momento, sem aviso prévio.</p>
+                </section>
+
+                <section>
+                    <h2>5. Propriedade Intelectual</h2>
+                    <p>Todo o conteúdo textual, análises de produtos e estrutura do site são de propriedade exclusiva do Preco Amigo. É proibida a cópia, reprodução ou distribuição não autorizada do nosso conteúdo original para fins comerciais sem a devida citação e link para a fonte original.</p>
+                </section>
+
+                <section>
+                    <h2>6. Modificações</h2>
+                    <p>O Preco Amigo pode revisar estes termos de serviço do site a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atual desses termos de serviço.</p>
+                </section>
+            </div>
+        </main>
+
+        <Footer />
+    </body>
+</html>
+
+<style>
+    /* O CSS é idêntico ao da Política de Privacidade para manter o design system */
+    .legal-container {
+        max-width: 800px; 
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .legal-content {
+        background: #ffffff;
+        padding: 2.5rem;
+        border-radius: 8px;
+        border: 1px solid #eaeaea;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .legal-content h1 {
+        color: #131921;
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .last-updated {
+        color: #888;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    .legal-content h2 {
+        color: #131921;
+        font-size: 1.4rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #FF9900;
+        padding-bottom: 5px;
+        display: inline-block;
+    }
+
+    .legal-content p, .legal-content li {
+        color: #444;
+        line-height: 1.6;
+        font-size: 1.05rem;
+        margin-bottom: 1rem;
+    }
+
+    .legal-content a {
+        color: #FF9900;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .legal-content a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .legal-content {
+            padding: 1.5rem;
+        }
+        .legal-content h1 {
+            font-size: 1.8rem;
+        }
+    }
+</style>

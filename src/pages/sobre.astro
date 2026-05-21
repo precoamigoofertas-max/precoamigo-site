@@ -1,0 +1,109 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <BaseHead 
+            title="Sobre Nós | Preco Amigo" 
+            description="Conheça a história do Preco Amigo, um projeto que nasceu da nossa experiência real de mobiliar uma casa nova e se tornou referência em dicas de confiança." 
+        />
+    </head>
+    <body>
+        <Header />
+
+        <main class="legal-container">
+            <div class="legal-content">
+                <h1>Nossa Jornada de Achadinhos</h1>
+                <p class="intro">
+                    A história do <strong>Preco Amigo</strong> não começou em uma sala de reuniões, mas sim dentro da nossa própria casa.
+                </p>
+
+                <section>
+                    <p>
+                        Em 2025, eu e meu esposo iniciamos um novo capítulo ao nos mudarmos para uma casa nova. Como todo casal em fase de mudança, mergulhamos no mundo das compras online: foram móveis, eletrodomésticos, ferramentas e itens de decoração. O desafio era grande, mas a recompensa foi maior: conseguimos mobiliar 90% da nossa casa através da internet, garimpando ofertas e aprendendo na prática o que realmente vale a pena.
+                    </p>
+                    <p>
+                        Durante esse processo, amigos, familiares e vizinhos começaram a notar as nossas escolhas. "Onde você comprou isso?", "Qual a marca?", "Esse produto é bom mesmo?". O que era apenas um compartilhamento de links no nosso grupo de WhatsApp da família se tornou uma fonte de confiança para todos ao nosso redor.
+                    </p>
+                    <p>
+                        Percebemos que, assim como nós, muitas pessoas buscam qualidade e preço justo, mas se sentem perdidas em meio a tantas opções. Foi então que resolvemos profissionalizar essa paixão e transformar nosso olhar atento em um portal de curadoria: assim nasceu o <strong>Preco Amigo</strong>.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Sejam bem-vindos!</h2>
+                    <p>
+                        Aqui você não encontrará apenas links de produtos, mas dicas de confiança baseadas na nossa realidade, no nosso dia a dia e nos testes que fazemos antes de qualquer recomendação. Nossa missão é trazer para você o que testamos, aprovamos e usamos, para que a sua experiência de compra seja sempre inteligente, segura e, claro, com um preço amigo.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Como nos mantemos?</h2>
+                    <p>
+                        O Preco Amigo participa de programas de afiliados. Quando você clica em nossos links e realiza uma compra, recebemos uma pequena comissão. Isso não custa absolutamente nada a mais para você, mas nos ajuda a manter o site atualizado e a continuar testando produtos para trazer o melhor conteúdo.
+                    </p>
+                </section>
+            </div>
+        </main>
+
+        <Footer />
+    </body>
+</html>
+
+<style>
+    .legal-container {
+        max-width: 800px;
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .legal-content {
+        background: #ffffff;
+        padding: 2.5rem;
+        border-radius: 8px;
+        border: 1px solid #eaeaea;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .legal-content h1 {
+        color: #131921;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .intro {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 2rem;
+        border-left: 4px solid #FF9900;
+        padding-left: 1rem;
+    }
+
+    .legal-content h2 {
+        color: #131921;
+        font-size: 1.4rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #FF9900;
+        padding-bottom: 5px;
+        display: inline-block;
+    }
+
+    .legal-content p {
+        color: #444;
+        line-height: 1.6;
+        font-size: 1.05rem;
+        margin-bottom: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+        .legal-content {
+            padding: 1.5rem;
+        }
+    }
+</style>

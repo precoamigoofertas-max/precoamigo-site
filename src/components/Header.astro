@@ -1,5 +1,5 @@
 ---
-// Header.astro
+// src/components/Header.astro
 ---
 
 <header class="main-header">
@@ -20,6 +20,7 @@
       <li><a href="/categorias/tecnologia">Tecnologia</a></li>
       <li><a href="/categorias/casa">Casa</a></li>
       <li><a href="/categorias/achadinhos">Achadinhos</a></li>
+      <li><a href="/categorias/automotivo">Automotivo</a></li>
       <li><a href="/categorias/ofertas-do-dia">Ofertas do Dia</a></li>
     </ul>
   </nav>
@@ -34,16 +35,16 @@
 <style>
   /* --- Estilos Gerais e Desktop --- */
   .main-header {
-    background-color: #131921; /* Cor escura do cabeçalho */
+    background-color: #131921;
     width: 100%;
     position: relative;
-    z-index: 100; /* Garante que o cabeçalho fique sobre o conteúdo */
+    z-index: 100;
   }
 
   .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1.2rem 1.5rem; /* Ajuste sutil do padding para a logo maior */
+    padding: 1.2rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,16 +54,15 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    z-index: 101; /* Mantém a logo acima do menu mobile */
+    z-index: 101;
   }
 
   .logo-img {
-    max-height: 80px; /* Altura elegante definida anteriormente */
+    max-height: 80px;
     width: auto;
     display: block;
   }
 
-  /* --- Links Desktop --- */
   .nav-links {
     list-style: none;
     display: flex;
@@ -83,53 +83,43 @@
     color: #FF9900;
   }
 
-  /* --- Estilos da Barra de Aviso de Afiliados (Borda Branca, Texto Preto) --- */
   .affiliate-disclosure {
-    background-color: #ffffff; /* Fundo Branco */
-    border-bottom: 1px solid #eaeaea; /* Linha fina de separação */
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
     width: 100%;
   }
 
   .disclosure-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 6px 1.5rem; /* Padding sutil para a faixa ser compacta */
-    text-align: right; /* Joga o texto para o canto direito */
+    padding: 6px 1.5rem;
+    text-align: right;
   }
   
   .disclosure-container p {
     margin: 0;
-    color: #000000; /* Texto Preto */
-    font-size: 0.75rem; /* Fonte pequena mas legível */
+    color: #000000;
+    font-size: 0.75rem;
     font-weight: 400;
     line-height: 1.4;
   }
 
-  /* --- Estilos para o Botão Mobile --- */
   .mobile-menu-btn {
-    display: none; /* Escondido por padrão (desktop) */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 10px; /* Maior área de toque */
-    z-index: 101; /* Mantém o botão clicável mesmo com menu aberto */
+    padding: 10px;
+    z-index: 101;
     align-items: center;
     justify-content: center;
   }
 
   /* --- ESTILOS MOBILE E MENU HAMBÚRGUER --- */
   @media (max-width: 768px) {
-    .nav-container {
-      padding: 0.8rem 1rem; /* Mais compacto no mobile */
-    }
-
-    .logo-img {
-      max-height: 50px; /* Redução para mobile para não empurrar os menus */
-    }
-
-    .mobile-menu-btn {
-      display: flex; /* Mostra o botão como flex container */
-    }
+    .nav-container { padding: 0.8rem 1rem; }
+    .logo-img { max-height: 50px; }
+    .mobile-menu-btn { display: flex; }
 
     .nav-links {
       position: absolute;
@@ -139,48 +129,28 @@
       background-color: #131921;
       flex-direction: column;
       gap: 0;
-      
-      /* Animação e Escondimento do Menu */
-      max-height: 0; /* Começa escondido */
+      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out; /* Transição suave */
-      border-bottom: 2px solid #FF9900; /* Linha laranja para destaque */
+      transition: max-height 0.3s ease-out;
+      border-bottom: 2px solid #FF9900;
     }
 
-    /* Classe ativada via JavaScript quando clica no botão */
-    .nav-links.active {
-      max-height: 350px; /* Altura suficiente para mostrar os itens */
-    }
+    /* Aumentei levemente o max-height para 450px para garantir que todos os links caibam no mobile */
+    .nav-links.active { max-height: 450px; }
 
-    .nav-links li {
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linhas de separação sutis */
-    }
-
-    .nav-links a {
-      display: block;
-      padding: 1.2rem; /* Área de toque grande (thumb-friendly) */
-      font-size: 1.1rem;
-    }
-
-    .disclosure-container {
-      text-align: center; /* Centralizado no celular para melhor leitura */
-      padding: 8px 1rem;
-    }
+    .nav-links li { text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    .nav-links a { display: block; padding: 1.2rem; font-size: 1.1rem; }
+    .disclosure-container { text-align: center; padding: 8px 1rem; }
   }
 </style>
 
 <script>
-  // Seleciona o botão e o menu
   const btn = document.getElementById('menu-toggle');
   const nav = document.getElementById('main-nav-links');
 
   if (btn && nav) {
     btn.addEventListener('click', () => {
-      // Alterna a classe 'active' que mostra/esconde o menu no CSS
       nav.classList.toggle('active');
-      
-      // Acessibilidade: Atualiza o estado para leitores de tela
       const isOpen = nav.classList.contains('active');
       btn.setAttribute('aria-expanded', isOpen.toString());
     });
