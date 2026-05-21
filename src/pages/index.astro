@@ -2,22 +2,330 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
-<html lang="pt-br">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>Bem-vindos ao Preco Amigo! 🚀</h1>
-			<p>
-				Aqui você vai encontrar as melhores ofertas de tecnologia, itens indispensáveis para a sua casa e os melhores achadinhos testados e aprovados.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<html lang="pt-BR">
+    <head>
+        <BaseHead 
+            title="Preco Amigo | Análises, Dicas e Ofertas Imperdíveis" 
+            description="Explore as melhores análises de produtos e encontre ofertas do dia para economizar com segurança no Mercado Livre e Amazon." 
+        />
+    </head>
+    <body>
+        <Header />
+
+        <main class="home-container">
+            
+            <section class="articles-section" aria-label="Últimas análises de produtos">
+                <h2 class="section-title">Últimas Análises e Dicas</h2>
+                <div class="articles-grid">
+                    
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="/parede-finalizada.png" alt="Parede de cimento queimado na sala" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="article-content">
+                            <h3>Como Fazer Parede de Cimento Queimado Gastando Pouco</h3>
+                            <p>Transforme sua sala em um único fim de semana com este kit completo Faça Você Mesmo por menos de R$ 170.</p>
+                            <a href="/categorias/casa/cimento-queimado" class="read-more">Ler Análise Completa</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="/kit-cameras.png" alt="Câmeras de segurança Wi-Fi para casa" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="article-content">
+                            <h3>Kit Câmera de Segurança: Proteja Sua Casa Sem Mensalidade</h3>
+                            <p>Descubra como montar um sistema de monitoramento eficiente, barato e fácil de instalar via Wi-Fi.</p>
+                            <a href="/categorias/casa/seguranca-residencial" class="read-more">Ler Análise Completa</a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <aside class="sidebar-offers" aria-label="Ofertas do dia recomendadas">
+                <div class="sidebar-header">
+                    <h2>🔥 Ofertas do Dia</h2>
+                </div>
+                
+                <div class="offers-list">
+                    <div class="mini-offer-card">
+                        <img src="/kitcalcas.jpg" alt="Kit com três calças jeans masculinas" loading="lazy" decoding="async" />
+                        <div class="mini-offer-details">
+                            <h4>Kit 3 Calças Jeans Masculina</h4>
+                            <span class="price">R$ 140,00</span>
+                            <a href="https://meli.la/2kN3WsM" target="_blank" rel="nofollow sponsored" class="buy-btn">Pegar Oferta</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-offer-card">
+                        <img src="/resina.png" alt="Resina para cimento queimado" loading="lazy" decoding="async" />
+                        <div class="mini-offer-details">
+                            <h4>Primer Cinza Preparador</h4>
+                            <span class="price">R$ 53,00</span>
+                            <a href="https://meli.la/1dYofX3" target="_blank" rel="nofollow sponsored" class="buy-btn">Pegar Oferta</a>
+                        </div>
+                    </div>
+
+                    <div class="mini-offer-card">
+                        <img src="/cimento-queimado.png" alt="Massa Cimento Queimado" loading="lazy" decoding="async" />
+                        <div class="mini-offer-details">
+                            <h4>Massa Cimento Queimado</h4>
+                            <span class="price">R$ 88,00</span>
+                            <a href="https://meli.la/1RpecRY" target="_blank" rel="nofollow sponsored" class="buy-btn">Pegar Oferta</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/categorias/ofertas-do-dia" class="view-all-offers">Ver Todas as Ofertas ➔</a>
+            </aside>
+
+        </main>
+
+        <Footer />
+    </body>
 </html>
+
+<style>
+    /* Ajuste de Limite e Fluidez (Alinhamento Perfeito com as extremidades do Header) */
+    .home-container {
+        max-width: 1200px; /* Mesma largura limite do cabeçalho */
+        width: 100%;
+        margin: 2rem auto;
+        padding: 0 1.5rem; /* Mesmo recuo lateral para alinhar com o logo e o último menu */
+        display: flex;
+        gap: 2.5rem; /* Espaçamento refinado entre colunas */
+        box-sizing: border-box;
+        align-items: flex-start;
+    }
+
+    /* SEO e Títulos */
+    .section-title {
+        color: #131921;
+        font-size: 1.6rem;
+        margin: 0 0 1.5rem 0;
+        font-weight: 700;
+        border-bottom: 3px solid #FF9900;
+        padding-bottom: 8px;
+        display: inline-block;
+    }
+
+    /* Distribuição Proporcional das Colunas (Layout Web Expandido) */
+    .articles-section {
+        flex: 7.2; /* Dá ligeiramente mais espaço para a leitura dos artigos */
+    }
+
+    .sidebar-offers {
+        flex: 2.8; /* Ajusta a barra lateral de ofertas de forma compacta e simétrica */
+        background: #f9f9fa;
+        border: 1px solid #e1e1e1;
+        border-radius: 8px;
+        padding: 1.2rem;
+        position: sticky;
+        top: 20px;
+    }
+
+    /* Grid e Layout dos Artigos */
+    .articles-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .article-card {
+        display: flex;
+        background: #fff;
+        border: 1px solid #e1e1e1;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .article-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .article-image {
+        width: 32%;
+        min-width: 200px;
+        background: #f4f4f4;
+    }
+
+    .article-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .article-content {
+        width: 68%;
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .article-content h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.3rem;
+        color: #131921;
+        line-height: 1.3;
+    }
+
+    .article-content p {
+        color: #555;
+        font-size: 0.95rem;
+        margin: 0 0 1rem 0;
+        line-height: 1.5;
+    }
+
+    .read-more {
+        color: #FF9900;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .read-more:hover {
+        text-decoration: underline;
+    }
+
+    /* Detalhes da Barra Lateral de Ofertas */
+    .sidebar-header h2 {
+        margin: 0 0 1.2rem 0;
+        font-size: 1.25rem;
+        color: #ef233c;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .offers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mini-offer-card {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        background: #fff;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #eee;
+    }
+
+    .mini-offer-card img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 4px;
+        flex-shrink: 0;
+    }
+
+    .mini-offer-details {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .mini-offer-details h4 {
+        margin: 0 0 4px 0;
+        font-size: 0.9rem;
+        color: #333;
+        line-height: 1.2;
+        font-weight: 600;
+    }
+
+    .mini-offer-details .price {
+        font-weight: 700;
+        color: #00a650;
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .buy-btn {
+        background: #131921;
+        color: #fff;
+        text-align: center;
+        padding: 5px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 700;
+        transition: background 0.2s;
+    }
+
+    .buy-btn:hover {
+        background: #FF9900;
+        color: #111;
+    }
+
+    .view-all-offers {
+        display: block;
+        text-align: center;
+        margin-top: 1.2rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid #e1e1e1;
+        color: #131921;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-decoration: none;
+    }
+
+    .view-all-offers:hover {
+        color: #FF9900;
+    }
+
+    /* Otimização e Responsividade Crítica (Mobile & Tablet) */
+    @media (max-width: 992px) {
+        .home-container {
+            gap: 1.5rem;
+        }
+        .article-image {
+            width: 40%;
+        }
+        .article-content {
+            width: 60%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .home-container {
+            flex-direction: column;
+            margin: 1rem auto;
+            padding: 0 1rem; /* Alinhamento sutil nas bordas do mobile */
+        }
+        
+        .articles-section, .sidebar-offers {
+            width: 100%;
+            flex: none;
+        }
+
+        .article-card {
+            flex-direction: column;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 180px;
+        }
+
+        .article-content {
+            width: 100%;
+            padding: 1rem;
+        }
+
+        .sidebar-offers {
+            position: static; /* Desativa o sticky para rolagem linear fluida no celular */
+            margin-top: 1rem;
+        }
+    }
+</style>

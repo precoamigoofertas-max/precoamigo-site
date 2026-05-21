@@ -1,83 +1,188 @@
 ---
+// Header.astro
 ---
-<header>
-    <nav class="nav-container">
-        <div class="logo">
-            <a href="/"><img src="/logo.png" alt="Logo Preco Amigo" /></a>
-        </div>
-        
-        <button class="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
 
-        <ul class="nav-links">
-            <li><a href="/categorias/casa">Casa</a></li>
-            <li><a href="/categorias/tecnologia">Tecnologia</a></li>
-            <li><a href="/categorias/achadinhos">Achadinhos</a></li>
-            <li><a href="/categorias/ofertas-do-dia">Ofertas do Dia</a></li>
-        </ul>
-    </nav>
+<header class="main-header">
+  <nav class="nav-container" aria-label="Navegação Principal do Preco Amigo">
+    
+    <a href="/" class="logo" aria-label="Ir para a página inicial do Preco Amigo">
+      <img src="/logo.png" alt="Logotipo Preco Amigo" class="logo-img" width="220" height="80" decoding="async" />
+    </a>
+    
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="main-nav-links">
+      <svg class="hamburger-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 12L20 12M4 6L20 6M4 18L20 18"></path>
+      </svg>
+    </button>
+    
+    <ul id="main-nav-links" class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/categorias/tecnologia">Tecnologia</a></li>
+      <li><a href="/categorias/casa">Casa</a></li>
+      <li><a href="/categorias/achadinhos">Achadinhos</a></li>
+      <li><a href="/categorias/ofertas-do-dia">Ofertas do Dia</a></li>
+    </ul>
+  </nav>
 </header>
 
+<div class="affiliate-disclosure">
+    <div class="disclosure-container">
+        <p>O Preco Amigo participa do Programa de Associados da Amazon e outros afiliados. Comprando pelos nossos links, podemos ganhar uma comissão, sem custo adicional para você.</p>
+    </div>
+</div>
+
 <style>
-    header { background: #131921; padding: 1rem; border-bottom: 4px solid #FF9900; }
-    .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; }
-    
-    .logo img { max-height: 40px; }
+  /* --- Estilos Gerais e Desktop --- */
+  .main-header {
+    background-color: #131921; /* Cor escura do cabeçalho */
+    width: 100%;
+    position: relative;
+    z-index: 100; /* Garante que o cabeçalho fique sobre o conteúdo */
+  }
 
-    /* Remove marcadores de lista e centraliza */
-    .nav-links { display: flex; list-style: none; margin: 0; padding: 0; gap: 1.5rem; }
-    .nav-links a { color: #fff; text-decoration: none; font-weight: 600; font-size: 1rem; }
-    .nav-links a:hover { color: #FF9900; }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 1.5rem; /* Ajuste sutil do padding para a logo maior */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .hamburger { display: none; background: none; border: none; cursor: pointer; }
-    .hamburger span { display: block; width: 25px; height: 3px; background: #fff; margin: 5px 0; }
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    z-index: 101; /* Mantém a logo acima do menu mobile */
+  }
 
-    /* Mobile */
-    @media (max-width: 768px) {
-        .hamburger { display: block; }
-        .nav-links { 
-            display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; 
-            background: #131921; text-align: center; padding: 1rem 0; z-index: 10;
-        }
-        .nav-links.open { display: flex; }
-        .nav-links li { padding: 10px 0; }
+  .logo-img {
+    max-height: 80px; /* Altura elegante definida anteriormente */
+    width: auto;
+    display: block;
+  }
+
+  /* --- Links Desktop --- */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: #FF9900;
+  }
+
+  /* --- Estilos da Barra de Aviso de Afiliados (Borda Branca, Texto Preto) --- */
+  .affiliate-disclosure {
+    background-color: #ffffff; /* Fundo Branco */
+    border-bottom: 1px solid #eaeaea; /* Linha fina de separação */
+    width: 100%;
+  }
+
+  .disclosure-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6px 1.5rem; /* Padding sutil para a faixa ser compacta */
+    text-align: right; /* Joga o texto para o canto direito */
+  }
+  
+  .disclosure-container p {
+    margin: 0;
+    color: #000000; /* Texto Preto */
+    font-size: 0.75rem; /* Fonte pequena mas legível */
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* --- Estilos para o Botão Mobile --- */
+  .mobile-menu-btn {
+    display: none; /* Escondido por padrão (desktop) */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px; /* Maior área de toque */
+    z-index: 101; /* Mantém o botão clicável mesmo com menu aberto */
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* --- ESTILOS MOBILE E MENU HAMBÚRGUER --- */
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 0.8rem 1rem; /* Mais compacto no mobile */
     }
+
+    .logo-img {
+      max-height: 50px; /* Redução para mobile para não empurrar os menus */
+    }
+
+    .mobile-menu-btn {
+      display: flex; /* Mostra o botão como flex container */
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #131921;
+      flex-direction: column;
+      gap: 0;
+      
+      /* Animação e Escondimento do Menu */
+      max-height: 0; /* Começa escondido */
+      overflow: hidden;
+      transition: max-height 0.3s ease-out; /* Transição suave */
+      border-bottom: 2px solid #FF9900; /* Linha laranja para destaque */
+    }
+
+    /* Classe ativada via JavaScript quando clica no botão */
+    .nav-links.active {
+      max-height: 350px; /* Altura suficiente para mostrar os itens */
+    }
+
+    .nav-links li {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linhas de separação sutis */
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 1.2rem; /* Área de toque grande (thumb-friendly) */
+      font-size: 1.1rem;
+    }
+
+    .disclosure-container {
+      text-align: center; /* Centralizado no celular para melhor leitura */
+      padding: 8px 1rem;
+    }
+  }
 </style>
 
 <script>
-    const hamburger = document.querySelector('.hamburger');
-    const links = document.querySelector('.nav-links');
-    hamburger?.addEventListener('click', () => links?.classList.toggle('open'));
+  // Seleciona o botão e o menu
+  const btn = document.getElementById('menu-toggle');
+  const nav = document.getElementById('main-nav-links');
+
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      // Alterna a classe 'active' que mostra/esconde o menu no CSS
+      nav.classList.toggle('active');
+      
+      // Acessibilidade: Atualiza o estado para leitores de tela
+      const isOpen = nav.classList.contains('active');
+      btn.setAttribute('aria-expanded', isOpen.toString());
+    });
+  }
 </script>
-
-<header>
-    <nav class="nav-container">
-        </nav>
-    
-    <div class="affiliate-disclosure">
-        <p>
-            O Preco Amigo participa do Programa de Associados da Amazon e outros afiliados. Ao clicar em nossos links, podemos ganhar uma comissão, sem custo adicional para você.
-        </p>
-    </div>
-</header>
-
-<style>
-    /* ... (seus estilos existentes) ... */
-
-  .affiliate-disclosure {
-        background: #131921; /* Mantém a mesma cor de fundo do cabeçalho */
-        color: #FF9900; /* Letras no tom laranja da marca */
-        font-size: 0.7rem; 
-        text-align: center;
-        padding: 8px 1rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha divisória quase invisível só para dar estrutura */
-    }
-    
-    .affiliate-disclosure p {
-        margin: 0;
-        font-style: italic;
-        letter-spacing: 0.3px; /* Dá um pouco mais de espaço entre as letras para facilitar a leitura */
-        opacity: 0.8; /* Suaviza o laranja para ficar mais sofisticado e menos agressivo à vista */
-    }
-</style>
