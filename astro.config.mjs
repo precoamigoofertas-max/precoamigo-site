@@ -4,10 +4,17 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
+const site = process.env.SITE_URL ?? 'https://precoamigo.com';
+
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
-	integrations: [mdx(), sitemap()],
+	site,
+	integrations: [
+		mdx(),
+		sitemap({
+			filter: (page) => !page.includes('/blog/'),
+		}),
+	],
 	fonts: [
 		{
 			provider: fontProviders.local(),

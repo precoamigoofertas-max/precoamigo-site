@@ -1,293 +1,120 @@
 ---
-// src/pages/categorias/casa.astro
-
 import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+import CategoryHub from '../../../components/CategoryHub.astro';
+import JsonLd from '../../../components/JsonLd.astro';
+import { SITE_URL } from '../../../consts';
 
-const categoryTitle = "Automotivo";
-const categoryDescription = "Análises completas, comparativos e os melhores opcoes sobre veiculos em geral.";
+const categoryTitle = 'Automotivo';
+const categoryDescription =
+	'Análises, comparativos e os melhores achados para seu veículo.';
 ---
 
 <!doctype html>
 <html lang="pt-BR">
-    <head>
-        <BaseHead 
-            title={`Preco Amigo | ${categoryTitle} - Análises e Ofertas`} 
-            description={categoryDescription} 
-        />
-    </head>
-    <body>
-        <Header />
-
-        <nav class="breadcrumbs" aria-label="Caminho de navegação">
-            <div class="container">
-                <a href="/">Home</a> <span aria-hidden="true">&raquo;</span> 
-                <span class="current-page" aria-current="page">{categoryTitle}</span>
-            </div>
-        </nav>
-
-        <main class="category-container">
-            <header class="category-header">
-                <h1 class="category-title">{categoryTitle}</h1>
-                <p class="category-desc">{categoryDescription}</p>
-            </header>
-
-            <section class="articles-grid" aria-label={`Artigos sobre ${categoryTitle}`}>
-                
-                <article class="review-card">
-                    <a href="/artigos/controle-ps4-pc" class="card-image-link" aria-label="Ler análise do Controle Bluetooth PS4/PC">
-                        <img src="/controle-bluetooth-ps4-pc-preco-amigo.png" alt="Controle Bluetooth para PS4 e PC em fundo neutro" loading="lazy" decoding="async" />
-                        <span class="category-badge">Análise</span>
-                    </a>
-                    <div class="card-content">
-                        <h2><a href="/artigos/controle-ps4-pc">O Melhor Controle Bluetooth Custo-Benefício para PC e PS4?</a></h2>
-                        <p>Testamos o controle que está dominando as vendas. Veja se vale a pena para o seu setup gamer e onde comprar mais barato.</p>
-                        
-                        <div class="card-footer">
-                            <span class="author-date">Por Equipe Preco Amigo • Atualizado hoje</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="review-card">
-                    <a href="/artigos/kit-seguranca" class="card-image-link" aria-label="Ler artigo sobre Kit de Segurança Wi-Fi">
-                        <img src="/kit-seguranca-wifi-smart-home.png" alt="Câmera de segurança Wi-Fi com smartphone" loading="lazy" decoding="async" />
-                        <span class="category-badge">Guia de Compra</span>
-                    </a>
-                    <div class="card-content">
-                        <h2><a href="/artigos/kit-seguranca">Kit Câmera Wi-Fi: Como Proteger Sua Casa Sem Mensalidade</a></h2>
-                        <p>Descubra como montar um sistema de monitoramento inteligente pelo celular gastando menos de R$ 200.</p>
-                        
-                        <div class="card-footer">
-                            <span class="author-date">Por Equipe Preco Amigo • Há 2 dias</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="review-card">
-                    <a href="/artigos/fone-ouvido" class="card-image-link" aria-label="Ler análise do Fone de Ouvido">
-                        <img src="/placeholder-image.png" alt="Fone de ouvido bluetooth" loading="lazy" decoding="async" />
-                        <span class="category-badge">Oferta</span>
-                    </a>
-                    <div class="card-content">
-                        <h2><a href="/artigos/fone-ouvido">Top 5 Fones Bluetooth com Cancelamento de Ruído Abaixo de R$ 150</a></h2>
-                        <p>Nossa seleção definitiva para quem busca qualidade de som, bateria duradoura e preço baixo no Mercado Livre.</p>
-                        
-                        <div class="card-footer">
-                            <span class="author-date">Por Equipe Preco Amigo • Há 5 dias</span>
-                        </div>
-                    </div>
-                </article>
-
-            </section>
-        </main>
-
-        <Footer />
-    </body>
+	<head>
+		<BaseHead
+			title={`Preco Amigo | ${categoryTitle} - Análises e Ofertas`}
+			description={categoryDescription}
+		/>
+		<JsonLd
+			schema={{
+				'@context': 'https://schema.org',
+				'@type': 'BreadcrumbList',
+				itemListElement: [
+					{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+					{
+						'@type': 'ListItem',
+						position: 2,
+						name: categoryTitle,
+						item: new URL('/categorias/automotivo/', SITE_URL).href,
+					},
+				],
+			}}
+		/>
+	</head>
+	<body>
+		<Header />
+		<nav class="breadcrumbs" aria-label="Caminho de navegação">
+			<div class="container">
+				<a href="/">Home</a> <span aria-hidden="true">&raquo;</span>
+				<span class="current-page" aria-current="page">{categoryTitle}</span>
+			</div>
+		</nav>
+		<main class="category-container">
+			<header class="category-header">
+				<h1 class="category-title">{categoryTitle}</h1>
+				<p class="category-desc">{categoryDescription}</p>
+			</header>
+			<CategoryHub category="automotivo" />
+		</main>
+		<Footer />
+	</body>
 </html>
 
 <style>
-    /* Variáveis baseadas na sua marca */
-    :root {
-        --cor-bg: #f4f6f8;
-        --cor-texto: #131921;
-        --cor-laranja: #FF9900;
-        --cor-cinza: #555555;
-        --cor-borda: #eaeaea;
-    }
-
-    body {
-        background-color: var(--cor-bg);
-        margin: 0;
-        font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    /* --- Breadcrumbs (SEO UX) --- */
-    .breadcrumbs {
-        background: #fff;
-        border-bottom: 1px solid var(--cor-borda);
-        padding: 12px 0;
-        font-size: 0.85rem;
-        color: var(--cor-cinza);
-    }
-
-    .breadcrumbs .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-    }
-
-    .breadcrumbs a {
-        color: var(--cor-texto);
-        text-decoration: none;
-    }
-
-    .breadcrumbs a:hover {
-        color: var(--cor-laranja);
-        text-decoration: underline;
-    }
-
-    .current-page {
-        font-weight: 600;
-        color: var(--cor-laranja);
-    }
-
-    /* --- Layout Principal --- */
-    .category-container {
-        max-width: 1200px;
-        margin: 2rem auto 4rem auto;
-        padding: 0 1.5rem;
-    }
-
-    .category-header {
-        margin-bottom: 2.5rem;
-        text-align: center;
-    }
-
-    .category-title {
-        font-size: 2.2rem;
-        color: var(--cor-texto);
-        margin: 0 0 10px 0;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: -0.5px;
-    }
-
-    .category-title::after {
-        content: '';
-        display: block;
-        width: 60px;
-        height: 4px;
-        background: var(--cor-laranja);
-        margin: 10px auto 0 auto;
-        border-radius: 2px;
-    }
-
-    .category-desc {
-        color: var(--cor-cinza);
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    /* --- Grade de Artigos (CSS Grid) --- */
-    .articles-grid {
-        display: grid;
-        /* Cria colunas responsivas: no mínimo 320px de largura, preenchendo o espaço */
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 2rem;
-    }
-
-    /* --- Cards de Artigo --- */
-    .review-card {
-        background: #ffffff;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid var(--cor-borda);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .review-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .card-image-link {
-        position: relative;
-        display: block;
-        width: 100%;
-        padding-top: 56.25%; /* Força proporção 16:9 perfeita para miniaturas */
-        background-color: #f0f0f0;
-        overflow: hidden;
-    }
-
-    .card-image-link img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .review-card:hover .card-image-link img {
-        transform: scale(1.05); /* Efeito de zoom suave ao passar o mouse */
-    }
-
-    /* Etiqueta flutuante na imagem (Ex: "Análise", "Oferta") */
-    .category-badge {
-        position: absolute;
-        bottom: 12px;
-        left: 12px;
-        background: var(--cor-laranja);
-        color: #111;
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 4px 10px;
-        border-radius: 4px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        z-index: 2;
-    }
-
-    .card-content {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-
-    .card-content h2 {
-        font-size: 1.25rem;
-        line-height: 1.3;
-        margin: 0 0 10px 0;
-    }
-
-    .card-content h2 a {
-        color: var(--cor-texto);
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-
-    .card-content h2 a:hover {
-        color: var(--cor-laranja);
-    }
-
-    .card-content p {
-        color: var(--cor-cinza);
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin: 0 0 1.5rem 0;
-        flex-grow: 1; /* Empurra o rodapé do card para baixo */
-    }
-
-    .card-footer {
-        border-top: 1px solid var(--cor-borda);
-        padding-top: 12px;
-        margin-top: auto;
-    }
-
-    .author-date {
-        font-size: 0.8rem;
-        color: #888;
-    }
-
-    /* --- Responsividade --- */
-    @media (max-width: 768px) {
-        .category-title {
-            font-size: 1.8rem;
-        }
-        .articles-grid {
-            grid-template-columns: 1fr; /* 1 coluna no celular */
-            gap: 1.5rem;
-        }
-        .category-container {
-            margin-top: 1.5rem;
-        }
-    }
+	:root {
+		--cor-bg: #f4f6f8;
+		--cor-texto: #131921;
+		--cor-laranja: #ff9900;
+		--cor-cinza: #555555;
+		--cor-borda: #eaeaea;
+	}
+	body {
+		background-color: var(--cor-bg);
+		margin: 0;
+		font-family: system-ui, -apple-system, sans-serif;
+	}
+	.breadcrumbs {
+		background: #fff;
+		border-bottom: 1px solid var(--cor-borda);
+		padding: 12px 0;
+		font-size: 0.85rem;
+		color: var(--cor-cinza);
+	}
+	.breadcrumbs .container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+	.breadcrumbs a {
+		color: var(--cor-texto);
+		text-decoration: none;
+	}
+	.current-page {
+		font-weight: 600;
+		color: var(--cor-laranja);
+	}
+	.category-container {
+		max-width: 1200px;
+		margin: 2rem auto 4rem;
+		padding: 0 1.5rem;
+	}
+	.category-header {
+		margin-bottom: 2.5rem;
+		text-align: center;
+	}
+	.category-title {
+		font-size: 2.2rem;
+		color: var(--cor-texto);
+		margin: 0 0 10px;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+	.category-title::after {
+		content: '';
+		display: block;
+		width: 60px;
+		height: 4px;
+		background: var(--cor-laranja);
+		margin: 10px auto 0;
+		border-radius: 2px;
+	}
+	.category-desc {
+		color: var(--cor-cinza);
+		font-size: 1.1rem;
+		max-width: 600px;
+		margin: 0 auto;
+	}
 </style>

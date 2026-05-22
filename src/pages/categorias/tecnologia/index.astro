@@ -1,90 +1,116 @@
 ---
-// src/pages/categorias/tecnologia/index.astro
-import { getCollection } from 'astro:content';
 import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+import CategoryHub from '../../../components/CategoryHub.astro';
+import JsonLd from '../../../components/JsonLd.astro';
+import { SITE_URL } from '../../../consts';
 
-// Configuração das variáveis da página
-const categoryTitle = "Tecnologia";
-const categoryDescription = "Análises completas, comparativos e os melhores achados de eletrônicos e gadgets em promoção no momento.";
-
-// Busca segura dos posts
-const allPosts = await getCollection('blog');
-
-// LOG PARA DEPURAÇÃO: Verifique o terminal para ver o que o Astro está lendo
-console.log("IDs disponíveis:", allPosts.map(p => p.id));
-
-// Filtro flexível: busca qualquer post que tenha 'tecnologia/' no ID
-const allTechPosts = allPosts.filter(post => post.id && post.id.includes('tecnologia/'));
+const categoryTitle = 'Tecnologia';
+const categoryDescription =
+	'Análises, comparativos e os melhores achados em tecnologia e games com custo-benefício.';
+const pageUrl = new URL('/categorias/tecnologia/', SITE_URL).href;
 ---
 
 <!doctype html>
 <html lang="pt-BR">
-    <head>
-        <BaseHead 
-            title={`Preco Amigo | ${categoryTitle} - Análises e Ofertas`} 
-            description={categoryDescription} 
-        />
-    </head>
-    <body>
-        <Header />
-
-        <nav class="breadcrumbs" aria-label="Caminho de navegação">
-            <div class="container">
-                <a href="/">Home</a> <span aria-hidden="true">&raquo;</span> 
-                <span class="current-page" aria-current="page">{categoryTitle}</span>
-            </div>
-        </nav>
-
-        <main class="category-container">
-            <header class="category-header">
-                <h1 class="category-title">{categoryTitle}</h1>
-                <p class="category-desc">{categoryDescription}</p>
-            </header>
-
-            <section class="articles-grid">
-                {allTechPosts.length > 0 ? (
-                    allTechPosts.map((post) => {
-                        // Garantimos o link usando o slug, com fall-back para o id caso falhe
-                        const link = `/blog/${post.slug || post.id.replace('.md', '').replace('.mdx', '')}`;
-                        return (
-                            <article class="review-card">
-                                <h2><a href={link}>{post.data.title}</a></h2>
-                                <p>{post.data.description}</p>
-                            </article>
-                        );
-                    })
-                ) : (
-                    <p>Nenhum artigo encontrado nesta categoria. (Verificando: {allPosts.length} posts totais encontrados)</p>
-                )}
-            </section>
-        </main>
-
-        <Footer />
-    </body>
+	<head>
+		<BaseHead
+			title={`Preco Amigo | ${categoryTitle} - Análises e Ofertas`}
+			description={categoryDescription}
+		/>
+		<JsonLd
+			schema={{
+				'@context': 'https://schema.org',
+				'@type': 'BreadcrumbList',
+				itemListElement: [
+					{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+					{ '@type': 'ListItem', position: 2, name: categoryTitle, item: pageUrl },
+				],
+			}}
+		/>
+	</head>
+	<body>
+		<Header />
+		<nav class="breadcrumbs" aria-label="Caminho de navegação">
+			<div class="container">
+				<a href="/">Home</a> <span aria-hidden="true">&raquo;</span>
+				<span class="current-page" aria-current="page">{categoryTitle}</span>
+			</div>
+		</nav>
+		<main class="category-container">
+			<header class="category-header">
+				<h1 class="category-title">{categoryTitle}</h1>
+				<p class="category-desc">{categoryDescription}</p>
+			</header>
+			<CategoryHub category="tecnologia" />
+		</main>
+		<Footer />
+	</body>
 </html>
 
 <style>
-    :root {
-        --cor-bg: #f4f6f8;
-        --cor-texto: #131921;
-        --cor-laranja: #FF9900;
-        --cor-cinza: #555555;
-        --cor-borda: #eaeaea;
-    }
-
-    body { background-color: var(--cor-bg); margin: 0; font-family: system-ui, -apple-system, sans-serif; }
-    .breadcrumbs { background: #fff; border-bottom: 1px solid var(--cor-borda); padding: 12px 0; font-size: 0.85rem; color: var(--cor-cinza); }
-    .breadcrumbs .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    .breadcrumbs a { color: var(--cor-texto); text-decoration: none; }
-    .current-page { font-weight: 600; color: var(--cor-laranja); }
-    .category-container { max-width: 1200px; margin: 2rem auto 4rem auto; padding: 0 1.5rem; }
-    .category-header { margin-bottom: 2.5rem; text-align: center; }
-    .category-title { font-size: 2.2rem; color: var(--cor-texto); margin: 0 0 10px 0; font-weight: 800; text-transform: uppercase; }
-    .category-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--cor-laranja); margin: 10px auto 0 auto; }
-    .category-desc { color: var(--cor-cinza); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
-    .review-card { background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid var(--cor-borda); padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02); }
-    .review-card h2 a { color: var(--cor-texto); text-decoration: none; }
+	:root {
+		--cor-bg: #f4f6f8;
+		--cor-texto: #131921;
+		--cor-laranja: #ff9900;
+		--cor-cinza: #555555;
+		--cor-borda: #eaeaea;
+	}
+	body {
+		background-color: var(--cor-bg);
+		margin: 0;
+		font-family: system-ui, -apple-system, sans-serif;
+	}
+	.breadcrumbs {
+		background: #fff;
+		border-bottom: 1px solid var(--cor-borda);
+		padding: 12px 0;
+		font-size: 0.85rem;
+		color: var(--cor-cinza);
+	}
+	.breadcrumbs .container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+	.breadcrumbs a {
+		color: var(--cor-texto);
+		text-decoration: none;
+	}
+	.current-page {
+		font-weight: 600;
+		color: var(--cor-laranja);
+	}
+	.category-container {
+		max-width: 1200px;
+		margin: 2rem auto 4rem;
+		padding: 0 1.5rem;
+	}
+	.category-header {
+		margin-bottom: 2.5rem;
+		text-align: center;
+	}
+	.category-title {
+		font-size: 2.2rem;
+		color: var(--cor-texto);
+		margin: 0 0 10px;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+	.category-title::after {
+		content: '';
+		display: block;
+		width: 60px;
+		height: 4px;
+		background: var(--cor-laranja);
+		margin: 10px auto 0;
+		border-radius: 2px;
+	}
+	.category-desc {
+		color: var(--cor-cinza);
+		font-size: 1.1rem;
+		max-width: 600px;
+		margin: 0 auto;
+	}
 </style>

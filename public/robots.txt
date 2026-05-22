@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://precoamigo.com/sitemap-index.xml

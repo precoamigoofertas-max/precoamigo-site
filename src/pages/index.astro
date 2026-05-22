@@ -2,6 +2,12 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { staticCategoryPages } from '../data/category-pages';
+import { getFeaturedOfertas, getPostUrl, getPublishedPosts } from '../utils/content';
+
+const ofertas = await getFeaturedOfertas(6);
+const blogPosts = (await getPublishedPosts()).slice(0, 4);
+const casaPages = staticCategoryPages.casa ?? [];
 ---
 
 <!doctype html>
@@ -20,29 +26,38 @@ import Footer from '../components/Footer.astro';
             <section class="articles-section" aria-label="Últimas análises de produtos">
                 <h2 class="section-title">Últimas Análises e Dicas</h2>
                 <div class="articles-grid">
-                    
-                    <article class="article-card">
-                        <div class="article-image">
-                            <img src="/parede-finalizada.png" alt="Parede de cimento queimado na sala" loading="lazy" decoding="async" />
-                        </div>
-                        <div class="article-content">
-                            <h3>Como Fazer Parede de Cimento Queimado Gastando Pouco</h3>
-                            <p>Transforme sua sala em um único fim de semana com este kit completo Faça Você Mesmo por menos de R$ 170.</p>
-                            <a href="/categorias/casa/cimento-queimado" class="read-more">Ler Análise Completa</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <div class="article-image">
-                            <img src="/kit-cameras.png" alt="Câmeras de segurança Wi-Fi para casa" loading="lazy" decoding="async" />
-                        </div>
-                        <div class="article-content">
-                            <h3>Kit Câmera de Segurança: Proteja Sua Casa Sem Mensalidade</h3>
-                            <p>Descubra como montar um sistema de monitoramento eficiente, barato e fácil de instalar via Wi-Fi.</p>
-                            <a href="/categorias/casa/seguranca-residencial" class="read-more">Ler Análise Completa</a>
-                        </div>
-                    </article>
-
+                    {
+                        casaPages.map((page) => (
+                            <article class="article-card">
+                                <div class="article-image">
+                                    <img src={page.image} alt={page.title} loading="lazy" decoding="async" width="640" height="360" />
+                                </div>
+                                <div class="article-content">
+                                    <h3>{page.title}</h3>
+                                    <p>{page.description}</p>
+                                    <a href={page.href} class="read-more">Ler Análise Completa</a>
+                                </div>
+                            </article>
+                        ))
+                    }
+                    {
+                        blogPosts.map((post) => (
+                            <article class="article-card">
+                                <div class="article-image">
+                                    {post.data.heroImage ? (
+                                        <img src={post.data.heroImage.src} alt={post.data.title} loading="lazy" decoding="async" width="640" height="360" />
+                                    ) : (
+                                        <div class="article-image-placeholder" aria-hidden="true" />
+                                    )}
+                                </div>
+                                <div class="article-content">
+                                    <h3>{post.data.title}</h3>
+                                    <p>{post.data.description}</p>
+                                    <a href={getPostUrl(post)} class="read-more">Ler Análise Completa</a>
+                                </div>
+                            </article>
+                        ))
+                    }
                 </div>
             </section>
 
@@ -52,32 +67,18 @@ import Footer from '../components/Footer.astro';
                 </div>
                 
                 <div class="offers-list">
-                    <div class="mini-offer-card">
-                        <img src="/kitcalcas.jpg" alt="Kit com três calças jeans masculinas" loading="lazy" decoding="async" />
-                        <div class="mini-offer-details">
-                            <h4>Kit 3 Calças Jeans Masculina</h4>
-                            <span class="price">R$ 140,00</span>
-                            <a href="https://meli.la/2kN3WsM" target="_blank" rel="nofollow sponsored" class="buy-btn">Pegar Oferta</a>
-                        </div>
-                    </div>
-
-                    <div class="mini-offer-card">
-                        <img src="/resina.png" alt="Resina para cimento queimado" loading="lazy" decoding="async" />
-                        <div class="mini-offer-details">
-                            <h4>Primer Cinza Preparador</h4>
-                            <span class="price">R$ 53,00</span>
-                            <a href="https://meli.la/1dYofX3" target="_blank" rel="nofollow sponsored" class="buy-btn">Pegar Oferta</a>
-                        </div>
-                    </div>
-
-                    <div class="mini-offer-card">
-                        <img src="/cimento-queimado.png" alt="Massa Cimento Queimado" loading="lazy" decoding="async" />
-                        <div class="mini-offer-details">
-                            <h4>Massa Cimento Queimado</h4>
-                            <span class="price">R$ 88,00</span>
-                            <a href="https://meli.la/1RpecRY" target="_blank" rel="nofollow sponsored" class="buy-btn">Pegar Oferta</a>
-                        </div>
-                    </div>
+                    {
+                        ofertas.map((oferta) => (
+                            <div class="mini-offer-card">
+                                <img src={oferta.data.image} alt={oferta.data.title} loading="lazy" decoding="async" width="120" height="120" />
+                                <div class="mini-offer-details">
+                                    <h4>{oferta.data.title}</h4>
+                                    <span class="price">{oferta.data.price}</span>
+                                    <a href={oferta.data.link} target="_blank" rel="nofollow sponsored noopener noreferrer" class="buy-btn">Pegar Oferta</a>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
 
                 <a href="/categorias/ofertas-do-dia" class="view-all-offers">Ver Todas as Ofertas ➔</a>
@@ -155,6 +156,12 @@ import Footer from '../components/Footer.astro';
         background: #f4f4f4;
     }
 
+    .article-image-placeholder {
+        width: 100%;
+        height: 100%;
+        min-height: 160px;
+        background: linear-gradient(135deg, #e8e8e8, #f0f0f0);
+    }
     .article-image img {
         width: 100%;
         height: 100%;

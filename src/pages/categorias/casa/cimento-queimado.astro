@@ -2,6 +2,25 @@
 import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+import AffiliateDisclaimer from '../../../components/AffiliateDisclaimer.astro';
+import JsonLd from '../../../components/JsonLd.astro';
+import { SITE_URL } from '../../../consts';
+import { cimentoQueimadoFaq, priceCheckedLabel } from '../../../data/cimento-queimado-faq';
+
+const pageUrl = new URL('/categorias/casa/cimento-queimado', Astro.site ?? SITE_URL).href;
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: cimentoQueimadoFaq.map((item) => ({
+		'@type': 'Question',
+		name: item.question,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: item.answer,
+		},
+	})),
+};
 ---
 
 <!doctype html>
@@ -11,6 +30,28 @@ import Footer from '../../../components/Footer.astro';
             title="Como Fazer Parede de Cimento Queimado Gastando Pouco (Kit Completo)" 
             description="Aprenda como fazer uma parede de cimento queimado perfeita gastando menos de R$ 170. Veja o kit completo faça você mesmo com primer, massa e resina." 
         />
+        <JsonLd
+            schema={{
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+                    { '@type': 'ListItem', position: 2, name: 'Casa', item: new URL('/categorias/casa/', SITE_URL).href },
+                    { '@type': 'ListItem', position: 3, name: 'Cimento Queimado', item: pageUrl },
+                ],
+            }}
+        />
+        <JsonLd
+            schema={{
+                '@context': 'https://schema.org',
+                '@type': 'Article',
+                headline: 'Como Fazer Parede de Cimento Queimado Gastando Pouco',
+                description: 'Kit completo DIY com primer, massa e resina no Mercado Livre.',
+                mainEntityOfPage: pageUrl,
+                author: { '@type': 'Organization', name: 'Equipe Preco Amigo' },
+            }}
+        />
+        <JsonLd schema={faqSchema} />
     </head>
     <body>
         <Header />
@@ -42,7 +83,8 @@ import Footer from '../../../components/Footer.astro';
                                 <div class="product-title">1. Primer Cinza (Base)</div>
                                 <div class="product-desc">Prepara a superfície, uniformiza a cor de fundo e garante que o cimento grude perfeitamente, evitando descascados. A "fita dupla face" da sua parede.</div>
                                 <div class="product-price">R$ 53,00</div>
-                                <a href="https://meli.la/1dYofX3" target="_blank" rel="noopener noreferrer nofollow" class="btn-buy" aria-label="Comprar Primer Cinza no Mercado Livre">Comprar Agora</a>
+                                <p class="price-note">{priceCheckedLabel}</p>
+                                <a href="https://meli.la/1dYofX3" target="_blank" rel="nofollow sponsored noopener noreferrer" class="btn-buy" aria-label="Comprar Primer Cinza no Mercado Livre">Comprar Agora</a>
                             </div>
 
                             <div class="product-card">
@@ -50,7 +92,7 @@ import Footer from '../../../components/Footer.astro';
                                 <div class="product-title">2. Massa Cimento Queimado</div>
                                 <div class="product-desc">A estrela do show! Já vem pronta para uso. Textura super macia, fácil de aplicar com espátula e secagem rápida para aquele efeito manchado elegante.</div>
                                 <div class="product-price">R$ 88,00</div>
-                                <a href="https://meli.la/1RpecRY" target="_blank" rel="noopener noreferrer nofollow" class="btn-buy" aria-label="Comprar Massa Cimento Queimado no Mercado Livre">Comprar Agora</a>
+                                <a href="https://meli.la/1RpecRY" target="_blank" rel="nofollow sponsored noopener noreferrer" class="btn-buy" aria-label="Comprar Massa Cimento Queimado no Mercado Livre">Comprar Agora</a>
                             </div>
 
                             <div class="product-card">
@@ -58,7 +100,7 @@ import Footer from '../../../components/Footer.astro';
                                 <div class="product-title">3. Resina Acrílica (Acabamento)</div>
                                 <div class="product-desc">O verniz que sela o trabalho. Protege contra umidade e poeira, tornando a parede lavável e realçando o efeito com um toque profissional.</div>
                                 <div class="product-price">R$ 29,00</div>
-                                <a href="https://meli.la/1u6E3gv" target="_blank" rel="noopener noreferrer nofollow" class="btn-buy" aria-label="Comprar Resina Acrílica no Mercado Livre">Comprar Agora</a>
+                                <a href="https://meli.la/1u6E3gv" target="_blank" rel="nofollow sponsored noopener noreferrer" class="btn-buy" aria-label="Comprar Resina Acrílica no Mercado Livre">Comprar Agora</a>
                             </div>
                         </div>
                     </section>
@@ -83,11 +125,27 @@ import Footer from '../../../components/Footer.astro';
                         
                         <div class="total-box">
                             <p>Somando o Primer (R$ 53), o Cimento (R$ 88) e a Resina (R$ 29), <br><strong>seu projeto sai por apenas R$ 170,00</strong>.</p>
-                            <p style="font-size: 1rem; margin-top: 10px; color: #555;">É um investmento muito baixo para uma transformação gigantesca!</p>
+                            <p style="font-size: 1rem; margin-top: 10px; color: #555;">É um investimento muito baixo para uma transformação gigantesca!</p>
                         </div>
 
                         <p style="text-align: center; font-size: 1.2rem; font-weight: bold;">Não adie mais o ambiente dos seus sonhos! Aproveite a entrega rápida e renove sua casa neste fim de semana.</p>
                     </section>
+
+                    <section class="faq-section" aria-labelledby="faq-title">
+                        <h2 id="faq-title">Perguntas Frequentes</h2>
+                        <div class="faq-list">
+                            {
+                                cimentoQueimadoFaq.map((item) => (
+                                    <details class="faq-item">
+                                        <summary>{item.question}</summary>
+                                        <p>{item.answer}</p>
+                                    </details>
+                                ))
+                            }
+                        </div>
+                    </section>
+
+                    <AffiliateDisclaimer />
                 </article>
             </main>
         </div>
@@ -254,6 +312,45 @@ import Footer from '../../../components/Footer.astro';
     .total-box p {
         margin: 0;
         font-size: 1.2rem;
+    }
+
+    .price-note {
+        font-size: 0.75rem;
+        color: #888;
+        margin: -8px 0 12px;
+    }
+
+    .faq-section {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 2px solid #eaeaea;
+    }
+
+    .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .faq-item {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 0 16px;
+    }
+
+    .faq-item summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--primary-color);
+        padding: 16px 0;
+        list-style-position: outside;
+    }
+
+    .faq-item p {
+        margin: 0 0 16px;
+        font-size: 1rem;
+        color: #555;
     }
 
     @media (max-width: 600px) {

@@ -2,6 +2,8 @@
 title: "Melhor Controle Custo-Benefício para PC e PS4: Conectividade e Precisão Testadas"
 description: "Testamos o controle Bluetooth para PS4, TV e PC. Descubra por que este modelo é a escolha perfeita para o seu setup gastando pouco."
 pubDate: 2026-05-21
+category: tecnologia
+draft: false
 ---
 
 Se você joga no PC ou PS4, sabe a frustração de lidar com controles que desconectam ou possuem atraso nos comandos. Testei este modelo Bluetooth e, honestamente, ele virou meu favorito pela estabilidade e preço justo.
@@ -15,6 +17,3 @@ Se você joga no PC ou PS4, sabe a frustração de lidar com controles que desco
 Você pode conferir este controle diretamente no Mercado Livre através do link abaixo:
 
 [**VER OFERTA NO MERCADO LIVRE**](https://meli.la/1XWFZTD)
-
----
-*O Preço Amigo pode ganhar comissões em compras qualificadas através de nossos links de afiliados (Mercado Livre), sem custo extra para você.*

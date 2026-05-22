@@ -4,6 +4,9 @@
 import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+import CategoryHub from '../../../components/CategoryHub.astro';
+import JsonLd from '../../../components/JsonLd.astro';
+import { SITE_URL } from '../../../consts';
 
 const categoryTitle = "Achadinhos";
 const categoryDescription = "Análises completas, comparativos e os melhores achados em promoção no momento.";
@@ -15,6 +18,16 @@ const categoryDescription = "Análises completas, comparativos e os melhores ach
         <BaseHead 
             title={`Preco Amigo | ${categoryTitle} - Análises e Ofertas`} 
             description={categoryDescription} 
+        />
+        <JsonLd
+            schema={{
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+                    { '@type': 'ListItem', position: 2, name: categoryTitle, item: new URL('/categorias/achadinhos/', SITE_URL).href },
+                ],
+            }}
         />
     </head>
     <body>
@@ -33,54 +46,7 @@ const categoryDescription = "Análises completas, comparativos e os melhores ach
                 <p class="category-desc">{categoryDescription}</p>
             </header>
 
-            <section class="articles-grid" aria-label={`Artigos sobre ${categoryTitle}`}>
-                
-                <article class="review-card">
-                    <a href="/artigos/controle-ps4-pc" class="card-image-link" aria-label="Ler análise do Controle Bluetooth PS4/PC">
-                        <img src="/controle-bluetooth-ps4-pc-preco-amigo.png" alt="Controle Bluetooth para PS4 e PC em fundo neutro" loading="lazy" decoding="async" />
-                        <span class="category-badge">Análise</span>
-                    </a>
-                    <div class="card-content">
-                        <h2><a href="/artigos/controle-ps4-pc">O Melhor Controle Bluetooth Custo-Benefício para PC e PS4?</a></h2>
-                        <p>Testamos o controle que está dominando as vendas. Veja se vale a pena para o seu setup gamer e onde comprar mais barato.</p>
-                        
-                        <div class="card-footer">
-                            <span class="author-date">Por Equipe Preco Amigo • Atualizado hoje</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="review-card">
-                    <a href="/artigos/kit-seguranca" class="card-image-link" aria-label="Ler artigo sobre Kit de Segurança Wi-Fi">
-                        <img src="/kit-seguranca-wifi-smart-home.png" alt="Câmera de segurança Wi-Fi com smartphone" loading="lazy" decoding="async" />
-                        <span class="category-badge">Guia de Compra</span>
-                    </a>
-                    <div class="card-content">
-                        <h2><a href="/artigos/kit-seguranca">Kit Câmera Wi-Fi: Como Proteger Sua Casa Sem Mensalidade</a></h2>
-                        <p>Descubra como montar um sistema de monitoramento inteligente pelo celular gastando menos de R$ 200.</p>
-                        
-                        <div class="card-footer">
-                            <span class="author-date">Por Equipe Preco Amigo • Há 2 dias</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="review-card">
-                    <a href="/artigos/fone-ouvido" class="card-image-link" aria-label="Ler análise do Fone de Ouvido">
-                        <img src="/placeholder-image.png" alt="Fone de ouvido bluetooth" loading="lazy" decoding="async" />
-                        <span class="category-badge">Oferta</span>
-                    </a>
-                    <div class="card-content">
-                        <h2><a href="/artigos/fone-ouvido">Top 5 Fones Bluetooth com Cancelamento de Ruído Abaixo de R$ 150</a></h2>
-                        <p>Nossa seleção definitiva para quem busca qualidade de som, bateria duradoura e preço baixo no Mercado Livre.</p>
-                        
-                        <div class="card-footer">
-                            <span class="author-date">Por Equipe Preco Amigo • Há 5 dias</span>
-                        </div>
-                    </div>
-                </article>
-
-            </section>
+            <CategoryHub category="achadinhos" />
         </main>
 
         <Footer />

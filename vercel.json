@@ -1,0 +1,14 @@
+{
+	"redirects": [
+		{
+			"source": "/blog/controle-ps4",
+			"destination": "/categorias/tecnologia/controle-ps4/",
+			"permanent": true
+		},
+		{
+			"source": "/blog/controle-ps4/",
+			"destination": "/categorias/tecnologia/controle-ps4/",
+			"permanent": true
+		}
+	]
+}

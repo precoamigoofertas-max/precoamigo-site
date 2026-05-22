@@ -3,28 +3,86 @@ import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import ProductCard from '../../../components/ProductCard.astro';
+import JsonLd from '../../../components/JsonLd.astro';
+import { SITE_URL } from '../../../consts';
+import { getActiveOfertas } from '../../../utils/content';
+
+const ofertas = await getActiveOfertas();
+const pageUrl = new URL('/categorias/ofertas-do-dia/', SITE_URL).href;
 ---
+
 <!doctype html>
-<html>
-    <head><BaseHead title="Ofertas do Dia | Preco Amigo" description="Melhores ofertas" /></head>
-    <body>
-        <Header />
-        <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem;">
-            <h1>Ofertas do Dia</h1>
-            <div class="grid">
-               <ProductCard 
-    title="Kit 3 Calças Jeans Masculina com Lycra"
-    image="/kitcalcas.jpg" 
-    price="R$ 140,00"
-    link="https://meli.la/2kN3WsM"
-    description="Jeans com elastano (Lycra) para o máximo conforto e ajuste perfeito. Aproveite a promoção de atacado!"
-/>
-            </div>
-        </main>
-        <Footer />
-    </body>
+<html lang="pt-BR">
+	<head>
+		<BaseHead
+			title="Ofertas do Dia | Preco Amigo"
+			description="As melhores promoções do Mercado Livre selecionadas hoje pelo Preco Amigo. Preços de referência — confira na loja."
+		/>
+		<JsonLd
+			schema={{
+				'@context': 'https://schema.org',
+				'@type': 'BreadcrumbList',
+				itemListElement: [
+					{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+					{
+						'@type': 'ListItem',
+						position: 2,
+						name: 'Ofertas do Dia',
+						item: pageUrl,
+					},
+				],
+			}}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="ofertas-main">
+			<h1>Ofertas do Dia</h1>
+			<p class="intro">
+				Seleção atualizada de achadinhos no Mercado Livre. Os preços abaixo são referência — o valor
+				final aparece na página do produto.
+			</p>
+			{
+				ofertas.length === 0 ? (
+					<p>Nenhuma oferta ativa no momento. Volte em breve!</p>
+				) : (
+					<div class="grid">
+						{ofertas.map((oferta) => (
+							<ProductCard
+								title={oferta.data.title}
+								image={oferta.data.image}
+								price={oferta.data.price}
+								link={oferta.data.link}
+								description={oferta.data.description}
+							/>
+						))}
+					</div>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
 </html>
 
 <style>
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+	.ofertas-main {
+		max-width: 1000px;
+		margin: 2rem auto 4rem;
+		padding: 0 1rem;
+	}
+	h1 {
+		color: #131921;
+		border-bottom: 3px solid #ff9900;
+		padding-bottom: 0.5rem;
+		display: inline-block;
+	}
+	.intro {
+		color: #555;
+		margin: 1rem 0 2rem;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 2rem;
+	}
 </style>

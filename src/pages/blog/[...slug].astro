@@ -1,22 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
 
+/** Redireciona URLs antigas /blog/slug para /categorias/categoria/slug */
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  
-  return posts.map(post => ({
-    params: { 
-      slug: post.slug 
-    },
-    props: { post },
-  }));
+	const posts = await getCollection('blog');
+	return posts
+		.filter((post) => !post.data.draft && post.data.category)
+		.map((post) => ({
+			params: { slug: post.id },
+			redirect: `/categorias/${post.data.category}/${post.id}/`,
+		}));
 }
-
-const { post } = Astro.props;
-const { Content } = await post.render();
 ---
-
-<BlogPost {...post.data}>
-  <Content />
-</BlogPost>

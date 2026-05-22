@@ -1,0 +1,31 @@
+---
+interface Props {
+	compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<p class:list={['affiliate-note', { compact }]}>
+	<em>
+		O Preço Amigo pode ganhar comissões em compras qualificadas pelos links de afiliados (Mercado
+		Livre e Amazon), sem custo extra para você. Preços são referência — confira o valor atual na
+		loja.
+	</em>
+</p>
+
+<style>
+	.affiliate-note {
+		margin: 2rem 0 0;
+		padding: 1rem;
+		background: #fff8e6;
+		border-left: 4px solid #ff9900;
+		font-size: 0.9rem;
+		color: #444;
+		line-height: 1.5;
+	}
+	.affiliate-note.compact {
+		margin: 1rem 0 0;
+		padding: 0.75rem;
+		font-size: 0.8rem;
+	}
+</style>
