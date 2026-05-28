@@ -4,6 +4,8 @@ description: "Testamos o controle Bluetooth para PS4, TV e PC. Descubra por que 
 pubDate: 2026-05-21
 category: tecnologia
 draft: false
+heroImage: "./controleps4.png"
+
 ---
 
 Se você joga no PC ou PS4, sabe a frustração de lidar com controles que desconectam ou possuem atraso nos comandos. Testei este modelo Bluetooth e, honestamente, ele virou meu favorito pela estabilidade e preço justo.

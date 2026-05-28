@@ -4,7 +4,7 @@ import { staticCategoryPages } from '../data/category-pages';
 import { getPostsByCategory, getPostUrl } from '../utils/content';
 
 interface Props {
-	category: 'casa' | 'tecnologia' | 'achadinhos' | 'automotivo';
+  category: 'casa' | 'tecnologia' | 'achadinhos' | 'automotivo';
 }
 
 const { category } = Astro.props;
@@ -14,157 +14,159 @@ const hasContent = staticPages.length > 0 || blogPosts.length > 0;
 ---
 
 <section class="articles-grid" aria-label="Artigos desta categoria">
-	{
-		staticPages.map((page) => (
-			<article class="review-card">
-				<a href={page.href} class="card-image-link" aria-label={`Ler: ${page.title}`}>
-					<img src={page.image} alt={page.title} loading="lazy" decoding="async" width="640" height="360" />
-					<span class="category-badge">{page.badge}</span>
-				</a>
-				<div class="card-content">
-					<h2>
-						<a href={page.href}>{page.title}</a>
-					</h2>
-					<p>{page.description}</p>
-					<div class="card-footer">
-						<span class="author-date">
-							Por Equipe Preco Amigo
-							{page.dateLabel ? ` • ${page.dateLabel}` : ''}
-						</span>
-					</div>
-				</div>
-			</article>
-		))
-	}
+  {
+    staticPages.map((page) => (
+      <article class="review-card">
+        <a href={page.href} class="card-image-link" aria-label={`Ler: ${page.title}`}>
+          <img src={page.image} alt={page.title} loading="lazy" decoding="async" width="640" height="360" />
+          <span class="category-badge">{page.badge}</span>
+        </a>
+        <div class="card-content">
+          <h2>
+            <a href={page.href}>{page.title}</a>
+          </h2>
+          <p>{page.description}</p>
+          <div class="card-footer">
+            <span class="author-date">
+              Por Equipe Preco Amigo
+              {page.dateLabel ? ` • ${page.dateLabel}` : ''}
+            </span>
+          </div>
+        </div>
+      </article>
+    ))
+  }
 
-	{
-		blogPosts.map((post) => (
-			<article class="review-card">
-				<a href={getPostUrl(post)} class="card-image-link" aria-label={`Ler: ${post.data.title}`}>
-					{post.data.heroImage ? (
-						<img
-							src={post.data.heroImage.src}
-							alt={post.data.title}
-							loading="lazy"
-							decoding="async"
-							width="640"
-							height="360"
-						/>
-					) : (
-						<div class="card-placeholder" aria-hidden="true" />
-					)}
-					<span class="category-badge">Análise</span>
-				</a>
-				<div class="card-content">
-					<h2>
-						<a href={getPostUrl(post)}>{post.data.title}</a>
-					</h2>
-					<p>{post.data.description}</p>
-					<div class="card-footer">
-						<span class="author-date">
-							Por Equipe Preco Amigo • <FormattedDate date={post.data.pubDate} />
-						</span>
-					</div>
-				</div>
-			</article>
-		))
-	}
+  {
+    blogPosts.map((post) => (
+      <article class="review-card">
+        <a href={getPostUrl(post)} class="card-image-link" aria-label={`Ler: ${post.data.title}`}>
+          {post.data.heroImage ? (
+            <img
+              src={post.data.heroImage.src}
+              alt={post.data.title}
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="360"
+            />
+          ) : (
+            <div class="card-placeholder" aria-hidden="true" />
+          )}
+          <span class="category-badge">Análise</span>
+        </a>
+        <div class="card-content">
+          <h2>
+            <a href={getPostUrl(post)}>{post.data.title}</a>
+          </h2>
+          <p>{post.data.description}</p>
+          <div class="card-footer">
+            <span class="author-date">
+              Por Equipe Preco Amigo • <FormattedDate date={post.data.pubDate} />
+            </span>
+          </div>
+        </div>
+      </article>
+    ))
+  }
 </section>
 
 {!hasContent && (
-	<p class="empty-category">Novos artigos desta categoria em breve. Confira as <a href="/categorias/ofertas-do-dia">ofertas do dia</a>.</p>
+  <p class="empty-category">
+    Novos artigos desta categoria em breve. Confira as <a href="/categorias/ofertas-do-dia">ofertas do dia</a>.
+  </p>
 )}
 
 <style>
-	.articles-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-		gap: 2rem;
-	}
-	.review-card {
-		background: #fff;
-		border-radius: 12px;
-		overflow: hidden;
-		border: 1px solid #eaeaea;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-		transition: transform 0.2s ease;
-		display: flex;
-		flex-direction: column;
-	}
-	.review-card:hover {
-		transform: translateY(-5px);
-	}
-	.card-image-link {
-		position: relative;
-		display: block;
-		width: 100%;
-		padding-top: 56.25%;
-		background: #f0f0f0;
-		overflow: hidden;
-	}
-	.card-image-link img,
-	.card-placeholder {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	.card-placeholder {
-		background: linear-gradient(135deg, #e8e8e8, #f5f5f5);
-	}
-	.category-badge {
-		position: absolute;
-		bottom: 12px;
-		left: 12px;
-		background: #ff9900;
-		color: #111;
-		font-size: 0.75rem;
-		font-weight: 700;
-		padding: 4px 10px;
-		border-radius: 4px;
-		text-transform: uppercase;
-		z-index: 2;
-	}
-	.card-content {
-		padding: 1.5rem;
-		display: flex;
-		flex-direction: column;
-		flex-grow: 1;
-	}
-	.card-content h2 {
-		font-size: 1.25rem;
-		line-height: 1.3;
-		margin: 0 0 10px;
-	}
-	.card-content h2 a {
-		color: #131921;
-		text-decoration: none;
-	}
-	.card-content h2 a:hover {
-		color: #ff9900;
-	}
-	.card-content p {
-		color: #555;
-		font-size: 0.95rem;
-		line-height: 1.5;
-		margin: 0 0 1.5rem;
-		flex-grow: 1;
-	}
-	.card-footer {
-		border-top: 1px solid #eaeaea;
-		padding-top: 12px;
-		font-size: 0.8rem;
-		color: #888;
-	}
-	.empty-category {
-		text-align: center;
-		color: #555;
-		padding: 2rem;
-	}
-	.empty-category a {
-		color: #131921;
-		font-weight: 600;
-	}
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  .review-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .review-card:hover {
+    transform: translateY(-5px);
+  }
+  .card-image-link {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #f0f0f0;
+    overflow: hidden;
+  }
+  .card-image-link img,
+  .card-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card-placeholder {
+    background: linear-gradient(135deg, #e8e8e8, #f5f5f5);
+  }
+  .category-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: #ff9900;
+    color: #111;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .card-content h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    margin: 0 0 10px;
+  }
+  .card-content h2 a {
+    color: #131921;
+    text-decoration: none;
+  }
+  .card-content h2 a:hover {
+    color: #ff9900;
+  }
+  .card-content p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 1.5rem;
+    flex-grow: 1;
+  }
+  .card-footer {
+    border-top: 1px solid #eaeaea;
+    padding-top: 12px;
+    font-size: 0.8rem;
+    color: #888;
+  }
+  .empty-category {
+    text-align: center;
+    color: #555;
+    padding: 2rem;
+  }
+  .empty-category a {
+    color: #131921;
+    font-weight: 600;
+  }
 </style>

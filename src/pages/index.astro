@@ -27,10 +27,19 @@ const casaPages = staticCategoryPages.casa ?? [];
                 <h2 class="section-title">Últimas Análises e Dicas</h2>
                 <div class="articles-grid">
                     {
-                        casaPages.map((page) => (
+                        casaPages.map((page, index) => (
                             <article class="article-card">
                                 <div class="article-image">
-                                    <img src={page.image} alt={page.title} loading="lazy" decoding="async" width="640" height="360" />
+                                    {/* Apenas o primeiro item recebe a imagem da parede */}
+                                    <img 
+                                        src={index === 0 ? "/parede-finalizada.png" : page.image} 
+                                        alt={page.title} 
+                                        loading="lazy" 
+                                        decoding="async" 
+                                        width="640" 
+                                        height="360" 
+                                        style="width: 100%; height: 100%; object-fit: cover; display: block;" 
+                                    />
                                 </div>
                                 <div class="article-content">
                                     <h3>{page.title}</h3>
@@ -41,11 +50,14 @@ const casaPages = staticCategoryPages.casa ?? [];
                         ))
                     }
                     {
-                        blogPosts.map((post) => (
+                        blogPosts.map((post, index) => (
                             <article class="article-card">
                                 <div class="article-image">
-                                    {post.data.heroImage ? (
-                                        <img src={post.data.heroImage.src} alt={post.data.title} loading="lazy" decoding="async" width="640" height="360" />
+                                    {/* Se for o primeiro post do blog (que é o seu segundo artigo na grid), força a imagem do controle */}
+                                    {index === 0 ? (
+                                        <img src="/controleps4.png" alt={post.data.title} loading="lazy" decoding="async" width="640" height="360" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                    ) : post.data.heroImage ? (
+                                        <img src={post.data.heroImage.src} alt={post.data.title} loading="lazy" decoding="async" width="640" height="360" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                                     ) : (
                                         <div class="article-image-placeholder" aria-hidden="true" />
                                     )}
@@ -57,7 +69,9 @@ const casaPages = staticCategoryPages.casa ?? [];
                                 </div>
                             </article>
                         ))
-                    }
+                    
+                </div>
+}
                 </div>
             </section>
 
